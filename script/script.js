@@ -71,7 +71,7 @@ function displayURL() {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" onclick="deleteThisItem(${i})">Save changes</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" onclick="deleteThisItem(${i})">Saveتيسسىبنتيسبلا changes</button>
                         </div>
                     </div>
                 </div>
