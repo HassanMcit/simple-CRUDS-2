@@ -61,21 +61,7 @@ function displayURL() {
             </td>
             <td class="col-3">
                 <button type="button" class="btn btn-danger"
-                    id="deleteItem"
-                    data-bs-toggle="modal" data-bs-target="#Modal">Delete</button>
-                <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Are You Sure to Delete?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" onclick="deleteThisItem(${i})">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-                </div>
+                    id="deleteItem" onclick="deleteThisItem(${i})">Delete</button>
             </td>
         </tr>
         `;
@@ -89,7 +75,7 @@ function clearForm() {
 }
 
 function deleteThisItem(index) {
-    console.log(bookmarkList.splice(index, 1));
+    bookmarkList.splice(index, 1);
     localStorage.setItem("bookmark", JSON.stringify(bookmarkList));
     displayURL();
 }
