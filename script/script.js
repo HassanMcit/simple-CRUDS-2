@@ -58,14 +58,14 @@ function displayURL() {
                 <a href="${bookmarkList[i].url.includes(`https://`) ? bookmarkList[i].url : "https://" + bookmarkList[i].url}" 
                     target="_blank" id="visit">
                     <button type="button" class="btn btn-danger text-white">
-                    <i class="fa-solid fa-eye pe-1"></i> Visit</button>
+                    <i class="fa-solid fa-eye pe-1"></i>Visit</button>
                 </a>
             </td>
             <td class="col-3">  
-                <button type="button" class="btn btn-dark" id="deleteItem" data-bs-toggle="modal" data-bs-target="#modal2" onclick="setIndexOfDeletedItem(${i})">
-                <i class="fa-solid fa-trash-can pe-1"></i> Delete</button>
+                <button type="button" class="btn btn-dark px-1 px-lg-2" id="deleteItem" data-bs-toggle="modal" data-bs-target="#modal2" onclick="setIndexOfDeletedItem(${i})">
+                <i class="fa-solid fa-trash-can pe-2"></i>Delete</button>
                 <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered w-25  mx-auto">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Are You Sure?</h1>
