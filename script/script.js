@@ -10,6 +10,7 @@ var accept = document.getElementById("accept");
 var error = document.getElementById("error");
 const toastTrigger = document.getElementById('Btn');
 const toastLiveExample = document.getElementById('liveToast');
+var globalIndex;
 
 if (toastTrigger) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
@@ -54,14 +55,29 @@ function displayURL() {
             <th scope="row" class="col-3 pt-3">${i + 1}</th>
             <td class="col-3 pt-3">${bookmarkList[i].name}</td>
             <td class="col-3">
-                <a href="${inputURL.value.includes(`https://`) ? inputURL.value : "https://" + inputURL.value}" 
+                <a href="${bookmarkList[i].url.includes(`https://`) ? bookmarkList[i].url : "https://" + bookmarkList[i].url}" 
                     target="_blank" id="visit">
-                    <button type="button" class="btn btn-success">Visit</button>
+                    <button type="button" class="btn btn-danger text-white">
+                    <i class="fa-solid fa-eye pe-1"></i> Visit</button>
                 </a>
             </td>
-            <td class="col-3">
-                <button type="button" class="btn btn-danger"
-                    id="deleteItem" onclick="deleteThisItem(${i})">Delete</button>
+            <td class="col-3">  
+                <button type="button" class="btn btn-dark" id="deleteItem" data-bs-toggle="modal" data-bs-target="#modal2" onclick="setIndexOfDeletedItem(${i})">
+                <i class="fa-solid fa-trash-can pe-1"></i> Delete</button>
+                <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered w-25  mx-auto">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Are You Sure?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="deleteThisItem()">Yes Delete</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </td>
         </tr>
         `;
@@ -74,9 +90,18 @@ function clearForm() {
     inputURL.value = "";
 }
 
-function deleteThisItem(index) {
-    bookmarkList.splice(index, 1);
+function setIndexOfDeletedItem (index) {
+    globalIndex = index;
+
+}
+
+function deleteThisItem() {
+    bookmarkList.splice(globalIndex, 1);
     localStorage.setItem("bookmark", JSON.stringify(bookmarkList));
+    if(bookmarkList.length == 0) {
+        localStorage.clear();
+    }
+    globalIndex = '';
     displayURL();
 }
 
